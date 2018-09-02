@@ -28,6 +28,7 @@ class AdsController < ApplicationController
 
     respond_to do |format|
       if @ad.save
+        @ad.user_id = current_user.id
         format.html { redirect_to @ad, notice: 'Ad was successfully created.' }
         format.json { render :show, status: :created, location: @ad }
       else
