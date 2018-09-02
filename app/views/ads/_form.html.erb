@@ -1,0 +1,57 @@
+<%= form_with(model: ad, local: true) do |form| %>
+  <% if ad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ad.errors.count, "error") %> prohibited this ad from being saved:</h2>
+
+      <ul>
+      <% ad.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :postal %>
+    <%= form.text_field :postal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :province %>
+    <%= form.text_field :province %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
