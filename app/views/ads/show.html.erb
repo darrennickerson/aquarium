@@ -7,7 +7,7 @@
 
 <p>
   <strong>Price:</strong>
-  <%= @ad.price %>
+   <%= number_to_currency(@ad.price, precision: 2) %>
 </p>
 
 <p>
@@ -35,10 +35,10 @@
   <%= @ad.phone %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @ad.user %>
-</p>
+
+<h5>This ad was posted by <%= @user.fname %> </h5>
+
+
 
 <%= link_to 'Edit', edit_ad_path(@ad) %> |
 <%= link_to 'Back', ads_path %>

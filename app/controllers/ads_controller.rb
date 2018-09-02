@@ -1,6 +1,6 @@
 class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
-
+  before_action :get_user, except: [:new, :create, :index ] 
   # GET /ads
   # GET /ads.json
   def index
@@ -25,11 +25,11 @@ class AdsController < ApplicationController
   # POST /ads.json
   def create
     @ad = Ad.new(ad_params)
+    @ad.user_id = current_user.id
 
     respond_to do |format|
       if @ad.save
-        @ad.user_id = current_user.id
-        format.html { redirect_to @ad, notice: 'Ad was successfully created.' }
+       format.html { redirect_to @ad, notice: 'Ad was successfully created.' }
         format.json { render :show, status: :created, location: @ad }
       else
         format.html { render :new }
@@ -66,6 +66,10 @@ class AdsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_ad
       @ad = Ad.find(params[:id])
+    end
+    def get_user
+      ad = Ad.find(params[:id])
+      @user = User.find(ad.user_id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -12,7 +12,7 @@
       <th>Postal</th>
       <th>Province</th>
       <th>Phone</th>
-      <th>User</th>
+     
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,13 +21,13 @@
     <% @ads.each do |ad| %>
       <tr>
         <td><%= ad.title %></td>
-        <td><%= ad.price %></td>
+        <td><%= number_to_currency(ad.price, precision: 2) %></td>
         <td><%= ad.description %></td>
         <td><%= ad.city %></td>
         <td><%= ad.postal %></td>
         <td><%= ad.province %></td>
         <td><%= ad.phone %></td>
-        <td><%= ad.user %></td>
+        
         <td><%= link_to 'Show', ad %></td>
         <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
         <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></td>

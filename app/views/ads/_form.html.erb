@@ -10,45 +10,70 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+<div class="row">
+<div class="col s12">
+<div class="row">
+<div class="input-field col s6">
+    <%= form.text_field :title, class: 'validate' %>
+ <%= form.label :title %>
+  
   </div>
 
-  <div class="field">
+  <div class="input-field col s6">
+  
     <%= form.label :price %>
-    <%= form.text_field :price %>
+    <%= form.text_field :price, class: 'validate' %>
+  
   </div>
-
-  <div class="field">
+  </div>
+<div class="row">
+  <div class="input-field col s6">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: 'materialize-textarea'%>
   </div>
 
-  <div class="field">
+  <div class="input-field col s6">
     <%= form.label :city %>
-    <%= form.text_field :city %>
+    <%= form.text_field :city, :value => current_user.city %>
   </div>
-
-  <div class="field">
+  </div>
+<div class="row">
+  <div class="input-field col s6">
     <%= form.label :postal %>
     <%= form.text_field :postal %>
   </div>
 
-  <div class="field">
-    <%= form.label :province %>
-    <%= form.text_field :province %>
+  <div class="input-field col s6">
+   
+    <%= form.select :province, options_for_select(can_prov, selected: current_user.province)  %>
+     <%= form.label :province %>
   </div>
+  </div>
+<div class="row">
 
-  <div class="field">
+   <div class="file-field input-field col s6">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" multiple>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload one or more pictures">
+      </div>
+    </div>
+
+  <div class="input-field col s6">
     <%= form.label :phone %>
     <%= form.text_field :phone %>
   </div>
+  </div>
+ </div>
 
   
 
   <div class="actions">
-    <%= form.submit %>
+  <%= button_tag :submit, class:'btn waves-effect waves-light left' do %>
+     <i class="material-icons right">create</i>create ad
+  <% end %>
+    
   </div>
 <% end %>
