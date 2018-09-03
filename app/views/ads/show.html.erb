@@ -35,6 +35,16 @@
   <%= @ad.phone %>
 </p>
 
+ <% @ad.images.each do |image| %>
+    <h5><%= image.filename %></h5>
+    <%= image_tag url_for(image) %>
+    <% if @user.id === current_user.id %>
+  <%= link_to 'Remove', ad_delete_image_attachment_url(image.blob_id, @ad.id, :ad  => @ad.id ),
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<% end %>
 
 <h5>This ad was posted by <%= @user.fname %> </h5>
 

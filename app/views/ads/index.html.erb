@@ -2,40 +2,44 @@
 
 <h1>Ads</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th>City</th>
-      <th>Postal</th>
-      <th>Province</th>
-      <th>Phone</th>
-     
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="row">
+ <div class="col m3 hide-on-small-only">
+    On this side I will show filters and categories
+    </div>
+<div class="col m9 s12">
     <% @ads.each do |ad| %>
-      <tr>
-        <td><%= ad.title %></td>
-        <td><%= number_to_currency(ad.price, precision: 2) %></td>
-        <td><%= ad.description %></td>
-        <td><%= ad.city %></td>
-        <td><%= ad.postal %></td>
-        <td><%= ad.province %></td>
-        <td><%= ad.phone %></td>
-        
-        <td><%= link_to 'Show', ad %></td>
-        <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
-        <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="col s12 ad_index">
+    <div class="col s8">
+    <div class="row">
+     <h5 class="blue-text text-lighten-3"><%= ad.title %></h5>
+     
+   <em><%= number_to_currency(ad.price, precision: 2) %></em>
+   </div>
+   <div class="row">
+       
+     
+        <div class="address"><i class="material-icons">place</i> <%= ad.city %>, <%= ad.province %>,  <%= ad.postal %>
+        </div>
 
+        <p><%= ad.description %></p>
+        <%= ad.phone %>
+        </div>
+        </div>
+        <div class="col s4">
+        <%= image_tag(url_for(ad.images.first)) %>
+        </div>
+        
+        <%= link_to 'View', ad, class: 'waves-effect btn' %>
+      
+     
+      
+     </div>
+     
+    <% end %>
+   
+  </div>
 <br>
+
+
 
 <%= link_to 'New Ad', new_ad_path %>

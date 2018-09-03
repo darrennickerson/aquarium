@@ -28,3 +28,36 @@
     height:100%;
     background: #000;
   }
+
+  img{
+    max-width: 100%;
+  }
+  
+  .ad_index{
+    
+    padding:15px;
+    border:1px solid grey;
+    margin:0px 0px 20px 0px;
+    border-radius:5px;
+  }
+  .ad_index h5{
+    float:left;
+   
+  }
+  
+  .ad_index em{
+    float:right;
+    background:red;
+    padding:4px;
+    border-radius:3px;
+    color:#fff;
+    font-size:1.4em;
+    margin-top:10px;
+  }
+  .ad_index img{
+    margin:5px;
+  }
+  .address{
+    font-weight:bold;
+    font-style: italic;
+  }

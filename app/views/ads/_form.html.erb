@@ -54,7 +54,7 @@
    <div class="file-field input-field col s6">
       <div class="btn">
         <span>File</span>
-        <input type="file" multiple>
+         <%= form.file_field :images, multiple: true, direct_upload: true %>
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text" placeholder="Upload one or more pictures">

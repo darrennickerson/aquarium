@@ -1,10 +1,10 @@
 class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
-  before_action :get_user, except: [:new, :create, :index ] 
+  before_action :get_user, only: [:show ] 
   # GET /ads
   # GET /ads.json
   def index
-    @ads = Ad.all
+    @ads = Ad.order(created_at: :desc)
   end
 
   # GET /ads/1
@@ -62,6 +62,15 @@ class AdsController < ApplicationController
     end
   end
 
+  def delete_image_attachment
+    
+    specific =  ActiveStorage::Attachment.find(params[:ad_id])
+    specific.purge
+    ad = Ad.find(params[:ad])
+  
+    redirect_to ad_url(ad)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ad
@@ -74,6 +83,6 @@ class AdsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ad_params
-      params.require(:ad).permit(:title, :price, :description, :city, :postal, :province, :phone, :user_id)
+      params.require(:ad).permit(:title, :price, :description, :city, :postal, :province, :phone, :user_id, images:[])
     end
 end
