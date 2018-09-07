@@ -66,6 +66,12 @@
     <%= form.text_field :phone %>
   </div>
   </div>
+
+   <div class="input-field col s6">
+   
+    <%= form.select :category, options_for_select(categories)  %>
+     <%= form.label :category %>
+  </div>
  </div>
 
   

@@ -61,3 +61,11 @@
     font-weight:bold;
     font-style: italic;
   }
+
+  .category{
+    background: grey;
+    padding:3px;
+    border-radius: 2px;
+    color:#fff;
+    display:inline-block;
+  }

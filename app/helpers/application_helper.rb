@@ -17,4 +17,14 @@ module ApplicationHelper
           ['Yukon']
         ]
       end
+
+      def categories
+        [
+          ['Saltwater Fish'],
+          ['Freshwater Fish'],
+          ['Corals'],
+          ['Aquariums']
+        ]
+
+      end
 end
