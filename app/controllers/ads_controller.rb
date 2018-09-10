@@ -1,6 +1,7 @@
 class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
   before_action :get_user, only: [:show ] 
+  before_action :check_user, only: [:edit, :update, :destroy]
   # GET /ads
   # GET /ads.json
   def index
@@ -80,6 +81,16 @@ class AdsController < ApplicationController
       ad = Ad.find(params[:id])
       @user = User.find(ad.user_id)
     end
+
+    def check_user
+      user = User.find(@ad.user_id)
+      if user.id != current_user.id
+        redirect_to request.referrer, flash: {notice: "You can't edit any ad except your own."}
+      end
+
+    end
+
+   
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ad_params

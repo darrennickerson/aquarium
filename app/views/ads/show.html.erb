@@ -1,18 +1,36 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row">
+
+<div class="col m4">
+
+<% @ad.images.each do |image| %>
+    <h5><%= image.filename %></h5>
+    <%= image_tag url_for(image) %>
+    <% if @user.id === current_user.id %>
+  <%= link_to 'Remove', ad_delete_image_attachment_url(image.blob_id, @ad.id, :ad  => @ad.id ),
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<% end %>
+</div>
+
+
+<div class="col m6">
 <p>
-  <strong>Title:</strong>
-  <%= @ad.title %>
+  
+ <h3> <%= @ad.title %></h3>
 </p>
 
 <p>
-  <strong>Price:</strong>
+  
    <%= number_to_currency(@ad.price, precision: 2) %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @ad.description %>
+ <p> <%= @ad.description %></p>
 </p>
 
 <p>
@@ -35,19 +53,41 @@
   <%= @ad.phone %>
 </p>
 
- <% @ad.images.each do |image| %>
-    <h5><%= image.filename %></h5>
-    <%= image_tag url_for(image) %>
-    <% if @user.id === current_user.id %>
-  <%= link_to 'Remove', ad_delete_image_attachment_url(image.blob_id, @ad.id, :ad  => @ad.id ),
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
+ 
+
+</div>
+
+<div class="col m2">
+
+<h4>Contact</h3>
+<p>This ad was posted by <%= @user.fname %> </p>
+
+<%= form_tag messages_path, method: :post do %>
+  <div class="form-group">
+    <%= label_tag 'message[subject]', 'Subject' %>
+    <%= text_field_tag 'message[subject]', nil, class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag 'message[body]', 'Message' %>
+    <%= text_area_tag 'message[body]', nil, cols: 3, class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag 'recipients', 'Choose recipients' %>
+    <%= select_tag 'recipients', recipients_options, multiple: true, class: 'form-control' %>
+  </div>
+
+  <%= submit_tag 'Send', class: 'btn btn-primary' %>
 <% end %>
 
-<% end %>
 
-<h5>This ad was posted by <%= @user.fname %> </h5>
 
+
+
+
+
+</div>
 
 
 <%= link_to 'Edit', edit_ad_path(@ad) %> |

@@ -18,13 +18,5 @@ module ApplicationHelper
         ]
       end
 
-      def categories
-        [
-          ['Saltwater Fish'],
-          ['Freshwater Fish'],
-          ['Corals'],
-          ['Aquariums']
-        ]
-
-      end
+      
 end

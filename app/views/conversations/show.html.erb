@@ -1,0 +1,11 @@
+<%= @conversation.subject %>
+
+<% @conversation.receipts_for(current_user).each do |receipt| %>
+
+<% message = receipt.message %>
+
+<h3><%= message.sender.username %></h3>
+
+<p><%= message.body %></p>
+
+<% end %>

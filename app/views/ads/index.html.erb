@@ -1,10 +1,16 @@
 <p id="notice"><%= notice %></p>
-
+<div class="row">
+<div class="col m6">
 <h1>Ads</h1>
+</div>
+<div class="col m6"><%= link_to 'New Ad', new_ad_path, class: 'add_ad' %>
+</div>
+</div>
+
 
 <div class="row">
  <div class="col m3 hide-on-small-only">
-    On this side I will show filters and categories
+   <%= render partial: "sidebar" %>
     </div>
 <div class="col m9 s12">
     <% @ads.each do |ad| %>
@@ -33,9 +39,11 @@
         <%= display_picture(ad)%>
         
         </div>
-        
+        <div class="row">
+        <div class="col m12">
         <%= link_to 'View', ad, class: 'waves-effect btn' %>
-      
+        </div>
+      </div>
      
       
      </div>
@@ -47,4 +55,4 @@
 
 
 
-<%= link_to 'New Ad', new_ad_path %>
+
